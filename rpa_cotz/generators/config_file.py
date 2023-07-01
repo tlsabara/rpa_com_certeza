@@ -1,4 +1,7 @@
-import jwt
+import json
+from datetime import datetime
+
+from jose import jwe
 
 private = b"""-----BEGIN RSA PRIVATE KEY-----
 MIICXAIBAAKBgQCirMTyaFfydoUw8DfWQjw6xAYUuoF/1VBJPrRke23kMS9pe47i
@@ -26,12 +29,17 @@ PQgo1hyolw2JqmuFgQIDAQAB
 
 params = dict(
     username='thiago.sabara@4mti.com.br',
-    password='myAwesomePasswordFoo',
-    url_test='google.com.br'
+    company='MinhaEmpresa',
+    created_at=str(datetime.now()),
+    valid_true=str(datetime(2023, 7, 5, 23, 59, 59))
 )
-jwt_config = jwt.encode(params, private, algorithm="RS256")
+jwt_config = jwe.encrypt(json.dumps(params), public,  algorithm='RSA1_5', encryption='A128GCM')
 
+reversed_ = jwe.decrypt(jwt_config, private)
+reversed_ = json.loads(reversed_)
 with open('config_file.ini', 'w') as fl:
-    fl.write(jwt_config)
-
+    fl.write(jwt_config.decode('utf-8'))
+    fl.write('\n\n--------\n\n')
+    # fl.write(reversed_.decode('utf-8'))
+    fl.write(str(reversed_))
 print('end')
