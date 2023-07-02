@@ -25,6 +25,7 @@ class LoadData:
 
     Esta classe serve como um wrapper para os dados de usuário e senha e valores dos dias a serem inseridos
     """
+
     def __init__(self) -> None:
         self.__valid = False
         self.__trace_error = None
@@ -62,27 +63,35 @@ class LoadData:
                 jwt_config = fl.readline()
             reversed_ = jwe.decrypt(jwt_config, PRIVATE_KEY)
             reversed_ = json.loads(reversed_)
+            self.df_data = self.__load_df_data(reversed_.get('csv_file'))
         except Exception as e:
             self.__trace_error = str(e)
+            raise e
             return dict()
         else:
+            self.__valid = True
             return reversed_
 
     @staticmethod
     def __load_df_data(filename: str) -> pd.DataFrame:
         """Carregao arquivo apenas com os dados que devem ser trataos
 
-        :param filename:
-        :return:
+        :param filename: caminho ou nome do arquivo
+        :return: DataFrame com os dados a serem inseridos.
         """
-        return pd.read_csv(filename).query("INSERIDO == True and IGNORAR")
+        return pd.read_csv(filename, sep=";").query("INSERIDO == True and IGNORAR")
 
-    def save_df_data(self):
+    def save_df_data(self) -> bool:
         """Interface para salvamento do arquivo CSV
 
-        :return:
+        :return: Verdadeiro ou Falso para o salvamento do arquivo
         """
-        self.df_data.to_csv(self.csv_file)
+        try:
+            self.df_data.to_csv(self.csv_file)
+        except Exception as e:
+            return False
+        else:
+            return True
 
     def next_record(self) -> pd.Series:
         """Interface para coleta de registros com os parametros necessários.

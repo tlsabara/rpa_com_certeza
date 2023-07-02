@@ -2,6 +2,9 @@ import json
 from datetime import datetime
 from jose import jwe
 
+
+# Realize o replace das keys do programa para melhorar a segurança
+
 PUBLIC_KEY = b"""-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCirMTyaFfydoUw8DfWQjw6xAYU
 uoF/1VBJPrRke23kMS9pe47i8YPP8UW0HSECnUUXGbIkRSblpptFFHwpr0XuN/K3

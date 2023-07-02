@@ -166,7 +166,7 @@ if value_hours_company:
     browser.find_element(
         By.XPATH,
         hours_on_homeoffice
-    ).send_keys(value_hours_homeoffice)
+    ).send_keys(value_hours_homeoffice
 
 ## Check de envio de email
 value_inform_mail = False

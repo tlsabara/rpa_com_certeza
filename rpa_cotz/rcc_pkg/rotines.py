@@ -49,7 +49,25 @@ class RPARegister:
         self.btn_add = None
         self.select_linked_user = None
 
-    def __initialize_browser(self) -> object:
+    def register_today(self):
+        """realiza o registro para a data de hoje
+        """
+        self.__initialize_browser() \
+            .__access_site() \
+            .__make_login() \
+            .__access_calendar()
+        return None
+
+    def register_batch(self):
+        """realiza o registro em batch baseado no arquivo CSV indicado
+        """
+        self.__initialize_browser() \
+            .__access_site() \
+            .__make_login() \
+            .__access_calendar() \
+            .__iter_parameters_file()
+
+    def __initialize_browser(self) -> SelfRPARegister:
         """Inicializa o navegador
         """
         self.browser = webdriver.Chrome()
@@ -74,7 +92,7 @@ class RPARegister:
 
         return self
 
-    def __acces_calendar(self) -> SelfRPARegister:
+    def __access_calendar(self) -> SelfRPARegister:
         """chamada para acessar o calendário de atividades
         """
         month = f"{datetime.now().month:0>2}"
