@@ -1,0 +1,6 @@
+DATA;TEXTO_ATIVIDADE;HORAS_EMPRESA;HORAS_CLIENTE;HORAS_HOMEOFFICE;EVENTO;PROJETO;PESSOA;INSERIDO;IGNORAR;EXECUTION_STATUS;INFORM_MAIL
+23/06/2023;"#2731 - Requisi��es com status incorreto - Fazendo, Corre��o de MR depois da Daily";08:15;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;True;;False
+22/06/2023;#2747 - Cria��o do ambiente de Homolog - Ambiente contru�do, problemas com a Infra de DB em HOMOLOG;08:20;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;False;;False
+21/06/2023;#2747 - Cria��o um ambiente de homolog - Configura��o de HTTPS/ Configura��o do Jenkins (devops.dataself.com.br:8080);09:09;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;True;;False
+20/06/2023;#2747 - Cria��o um ambiente de homolog - Deploy do ambiente em homolog2.dataself.com.br;08:27;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;False;;False
+19/06/2023;"#2747 - Cria��o um ambiente de homolog - Problemas de acesso ao Banco de Dados.Entendimento do uso do SQS no DS com o Paulo Marques e Gabriel Medeiros";07:18;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;False;;False

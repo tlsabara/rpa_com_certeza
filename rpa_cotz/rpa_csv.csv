@@ -1,2 +1,14 @@
-DATA;TEXTO_ATIVIDADE;HORAS_EMPRESA;HORAS_CLIENTE;HORAS_HOMEOFFICE;EVENTO;PROJETO;PESSOA;INSERIDO;IGNORAR;EXECUTION_STATUS
-24/06/2023;EXEMPLO: Desenvolvimento desta aplicação;08:22;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;False;
+DATA;TEXTO_ATIVIDADE;HORAS_EMPRESA;HORAS_CLIENTE;HORAS_HOMEOFFICE;EVENTO;PROJETO;PESSOA;INSERIDO;IGNORAR;EXECUTION_STATUS;INFORM_MAIL
+22/06/2023;#2747 - Criação do ambiente de Homolog - Ambiente contruído, problemas com a Infra de DB em HOMOLOG;08:20;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;False;OK;False
+16/06/2023;Kubernets da Enforce - Sem issue - Ajustes de build, migra‡Æo de vari veis para Key Vault - Ainda nÆo finalizado #2731 - Requisi‡äes com status incorreto - Investigando;06:20;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;True;OK;False
+15/06/2023;Teve diversas issues que subiram. Kubernets da Enforce - Sem issue - Reativacao do cluster e atualiza‡Æo de versÆo;08:21;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;True;OK;False
+14/06/2023;Analise de infraestrutura do DS;07:03;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;True;OK;False
+13/06/2023;#2634 - Erro na pagina de Relatorio de Custos - Fazendo - Aguardando o Matheus #2413 - Erro acesso a tela via url - Fazendo;08:12;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;True;OK;False
+12/06/2023;#2714 - Formulario de Seguranca - BTG Pactual - Aguardando aprovaco com o Marcos -  - Em atraso, nao vou enviar sem aprovacao #2634 - Erro na pagina de Relatorio de Custos - Fazendo - Aguardando o Matheus #2413 - Erro acesso a tela via url - Fazendo -  estruturando testes para que a modificacao nao quebre nada (vou pedir para revotar, afeta todas as rotas privadas);08:46;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;True;OK;False
+09/06/2023;#2634 - Erro na pagina de Relatorio de Custos - Fazendo - Identificado um erro na contagem de consultas - Aguardando o Matheus #2413 - Erro acesso a tela via url - Problema com a checagem de sessaoo/decoradores ;07:45;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;True;OK;False
+08/06/2023;"#2634 - Erro na pagina de Relatorio de Custos - Fazendo - Reformulando queries #2714 - Formulario de Seguranaa - BTG Pactual - Aguardando aprovacao com o Marcos -  - ""Em atraso, nao vou enviar sem aprovacao""";08:19;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;True;OK;False
+07/06/2023;#2676 - Criacao de ambiente de homologacao - Problemas com o servidor do gaspar e DB Homolog;10:11;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;True;OK;False
+06/06/2023;#2714 - Formulario de Seguranaa - BTG Pactual - Finalizaaao e Avaliaaao do Paulo;08:36;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;True;OK;False
+05/06/2023;#2676 - Criacao do ambiente de homolog, criacao dos scripts sql para o DB Mock;07:23;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;True;OK;False
+02/06/2023;#2676 - Criacao de ambiente de homologacao - Adequaaao de origens para o gaspar Franaa;08:53;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;True;OK;False
+01/06/2023;#2669 Verificacao nas dependancias do projeto, #2667 Erro em conexoes e Formulario de Seguranca;08:12;00:00;00:00;Desenvolvimento;Dataself;Enforce Group;False;True;OK;False

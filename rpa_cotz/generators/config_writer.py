@@ -23,17 +23,21 @@ def create_config() -> bool:
             username=username_,
             password=password_,
             created_at=str(datetime.now()),
-            csv_file=csv_
+            csv_file=csv_,
         )
 
-        jwt_config = jwe.encrypt(json.dumps(params), PUBLIC_KEY, algorithm='RSA1_5', encryption='A128GCM')
+        jwt_config = jwe.encrypt(
+            json.dumps(params), PUBLIC_KEY, algorithm="RSA1_5", encryption="A128GCM"
+        )
 
-        with open('rpa_cotz.ini', 'w') as fl:
-            fl.write(jwt_config.decode('utf-8'))
+        with open("rpa_cotz.ini", "w") as fl:
+            fl.write(jwt_config.decode("utf-8"))
+
     except Exception as e:
         print(f'<<{"ERRO AO GERAR ARQUIVO":-^50}>>')
         print(e)
         print(f'<<{"FIM ERRO":-^50}>>')
         return False
+
     else:
         return True

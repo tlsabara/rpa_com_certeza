@@ -31,11 +31,11 @@ class LoadData:
         self.__trace_error = None
         data = self.__load_data()
 
-        self.username: str = data.get('username')
-        self.password: str = data.get('password')
-        self.create_at: str = data.get('create_at')
-        self.csv_file: str = data.get('csv_file')
-        self.df_data: pd.DataFrame = data.get('df_data')
+        self.username: str = data.get("username")
+        self.password: str = data.get("password")
+        self.create_at: str = data.get("create_at")
+        self.csv_file: str = data.get("csv_file")
+        self.df_data: pd.DataFrame = data.get("df_data")
 
     @property
     def is_valid(self) -> bool:
@@ -59,15 +59,16 @@ class LoadData:
         :return: dicionário com os dados de configuração
         """
         try:
-            with open('rpa_cotz.ini', 'r') as fl:
+            with open("rpa_cotz.ini", "r") as fl:
                 jwt_config = fl.readline()
             reversed_ = jwe.decrypt(jwt_config, PRIVATE_KEY)
             reversed_ = json.loads(reversed_)
-            self.df_data = self.__load_df_data(reversed_.get('csv_file'))
+            reversed_["df_data"] = self.__load_df_data(reversed_.get("csv_file"))
         except Exception as e:
             self.__trace_error = str(e)
             raise e
-            return dict()
+            # TODO: Melhorar este tratamento de erro, codificação do arquivo esta afetando o funcionanento
+            # return dict()
         else:
             self.__valid = True
             return reversed_
@@ -79,7 +80,8 @@ class LoadData:
         :param filename: caminho ou nome do arquivo
         :return: DataFrame com os dados a serem inseridos.
         """
-        return pd.read_csv(filename, sep=";").query("INSERIDO == True and IGNORAR")
+        df = pd.read_csv(filename, sep=";")
+        return df.query("INSERIDO == False and IGNORAR == False")
 
     def save_df_data(self) -> bool:
         """Interface para salvamento do arquivo CSV
@@ -87,7 +89,7 @@ class LoadData:
         :return: Verdadeiro ou Falso para o salvamento do arquivo
         """
         try:
-            self.df_data.to_csv(self.csv_file)
+            self.df_data.to_csv(self.csv_file, sep=";", index=False, encoding="utf-8")
         except Exception as e:
             return False
         else:
@@ -98,5 +100,5 @@ class LoadData:
 
         :return:
         """
-        for line in self.df_data:
+        for _, line in self.df_data.iterrows():
             yield line
