@@ -10,7 +10,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver import ActionChains
 import selenium.common.exceptions as SeleniumErrors
 from datetime import datetime
-
+from time import sleep
 
 # Global Context
 
@@ -95,14 +95,14 @@ for i in browser.find_elements(By.XPATH, linked_project_options):
 
 ## Selecionar o evento
 value_select = 'Desenvolvimento'
-
+browser.find_element(By.XPATH, linked_event).click()
 for i in browser.find_elements(By.XPATH, linked_event_options):
     if i.text == value_select:
         i.click()
         break
 
 ## Selecionar a data
-value_date = datetime(2023, 6, 28).strftime('%d/%m/%Y')
+value_date = datetime(2023, 6, 27).strftime('%d/%m/%Y')
 
 browser.find_element(
     By.XPATH,
@@ -118,7 +118,7 @@ browser.find_element(
 value_text = """
 Correção de Merges
 Correção do Pipeline
-Conifguração de SSL no Cluster do Homolog2
+Issue #2699 e #2701
 Correção de BUGs
 """
 browser.find_element(
@@ -132,7 +132,7 @@ browser.find_element(
 ).send_keys(value_text)
 
 ## Aplicar as horas de execução
-value_hours_company = "08:49"
+value_hours_company = "08:35"
 if value_hours_company:
     browser.find_element(
         By.XPATH,
@@ -180,7 +180,7 @@ if value_inform_mail:
 ## Submeter o fomulário
 browser.find_element(By.XPATH, btn_register_task).click()
 
-browser.implicitly_wait(10)
+sleep(5)
 
 alert = Alert(browser)
 alert_text = alert.text
