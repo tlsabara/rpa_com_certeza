@@ -14,6 +14,7 @@ PQgo1hyolw2JqmuFgQIDAQAB
 
 
 def create_config() -> bool:
+    """Coleta os dados do usuário para inserir no arquivo de configuração"""
     try:
         username_ = input("\n\nInsira seu usuário do sistema:")
         password_ = input("\n\nInsira sua senha do sistema:")

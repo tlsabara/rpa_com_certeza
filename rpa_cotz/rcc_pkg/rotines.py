@@ -1,13 +1,10 @@
 import json
 
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver import ActionChains
-import selenium.common.exceptions as SeleniumErrors
 from datetime import datetime
 from time import sleep
 from typing import TypeVar
@@ -54,17 +51,18 @@ class RPARegister:
         self.select_linked_user = None
 
     def __targets_loader(self) -> None:
-        with open("targets.json", "r") as fl:
+        """Realiza o carregamento dos XPATHS para os atributos da classe"""
+        with open(self.TARGETS_NAMEFILE, "r") as fl:
             targets_dict = json.loads("".join(fl.readlines()))
         self.__dict__.update(targets_dict)
 
     def register_today(self) -> None:
-        """realiza o registro para a data de hoje"""
+        """Realiza o registro para a data de hoje"""
         self.__initialize_browser().__access_site().__make_login().__access_calendar()
         return None
 
     def register_batch(self) -> None:
-        """realiza o registro em batch baseado no arquivo CSV indicado"""
+        """Realiza o registro em batch baseado no arquivo CSV indicado"""
         self.__initialize_browser().__access_site().__make_login().__access_calendar().__iter_parameters_file()
 
         return None
@@ -84,7 +82,7 @@ class RPARegister:
         return self
 
     def __make_login(self) -> SelfRPARegister:
-        """Controla o navegador com o objetivo de realizar o login"""
+        """Controla o navegador para realizar o login"""
         self.browser.find_element(By.XPATH, self.input_username).send_keys(
             self.configs.username
         )
@@ -98,7 +96,7 @@ class RPARegister:
         return self
 
     def __access_calendar(self) -> SelfRPARegister:
-        """chamada para acessar o calendário de atividades"""
+        """Chamada para acessar o calendário de atividades"""
         month = f"{datetime.now().month:0>2}"
         year = f"{datetime.now().month:0>4}"
         self.browser.get(self.url_to_register_hours.format(month=month, year=year))
@@ -106,6 +104,7 @@ class RPARegister:
         return self
 
     def __iter_parameters_file(self) -> None:
+        """Itera sob os registros do CSV que atendem o requisito"""
         for record in self.configs.next_record():
             valid_insert = self.__insert_form(record)
             if not valid_insert:
@@ -141,7 +140,7 @@ class RPARegister:
         )
 
     def __sub_open_form(self) -> SelfRPARegister:
-        """subrotina para abrir um novo formuário"""
+        """Subrotina para abrir um novo formuário"""
         self.btn_add = self.wait.until(
             ec.visibility_of_element_located((By.XPATH, self.btn_add_actions))
         )
@@ -200,6 +199,7 @@ class RPARegister:
     def __sub_insert_company_hours(
         self, value_hours_company: str = "00:00"
     ) -> SelfRPARegister:
+        """Insere o valor de horas na empresa"""
         self.browser.find_element(By.XPATH, self.hours_company).clear()
 
         self.browser.find_element(By.XPATH, self.hours_company).send_keys(
@@ -210,6 +210,7 @@ class RPARegister:
     def __sub_insert_client_hours(
         self, value_hours_client: str = "00:00"
     ) -> SelfRPARegister:
+        """Insere o valor de horas no cliente"""
         self.browser.find_element(By.XPATH, self.hours_on_client).clear()
 
         self.browser.find_element(By.XPATH, self.hours_on_client).send_keys(
@@ -220,6 +221,7 @@ class RPARegister:
     def __sub_insert_homeoffice_hours(
         self, value_hours_homeoffice: str = "00:00"
     ) -> SelfRPARegister:
+        """Insere o valor de horas em Homeoffice"""
         self.browser.find_element(By.XPATH, self.hours_on_homeoffice).clear()
 
         self.browser.find_element(By.XPATH, self.hours_on_homeoffice).send_keys(
@@ -228,11 +230,13 @@ class RPARegister:
         return self
 
     def __sub_check_mail_inform(self, inform_mail: bool = False) -> SelfRPARegister:
+        """Check no campo inform mail"""
         if inform_mail:
             self.browser.find_element(By.XPATH, self.check_send_mail).click()
         return self
 
     def __sub_submit_form(self) -> bool:
+        """Envia o formulário"""
         self.browser.find_element(By.XPATH, self.btn_register_task).click()
 
         sleep(5)
